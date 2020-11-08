@@ -1,0 +1,4 @@
+Flask-WTF
+flask
+jinja2
+git+https://github.com/pgmpy/pgmpy.git

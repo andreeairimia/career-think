@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Personas{% endblock %}
+
+{% block content %}
+    <div class="row flex_display justify-content-center">
+        <span class="text-highlight" style="font-size:20px">What kind of job seeker are you?</span>
+    </div>
+    <br>
+    <div class="app__content bg_white">
+        <form method="POST" action="{{ url_for('frontend.home') }}" id="personaForm">
+            <div class="row flex_display justify-content-between">
+                {% for i in range(0, personas.__len__()) %}
+                    <div class="radio-group col-md-4">
+                        <div class="card radio">
+                            <div class="row justify-content-end d-flex px-3">
+                                <div class="fa fa-circle"></div>
+                            </div>
+                            <div>
+                                <h4>{{ personas[i]['name'] }}</h4>
+                            </div>
+                            <div>
+                                {{ personas[i]['quote'] }}
+                            </div>
+                            <div style="padding-top:23px">
+                                {{ personas[i]['description'] }}
+                            </div>
+                            <input type="submit" style="visibility:hidden;" class="btn-block btn-primary mt-3 mb-1" value="SELECT" formaction="{{ url_for('frontend.home', user_persona_id=personas[i]['id']) }}"/>
+
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+{% endblock %}

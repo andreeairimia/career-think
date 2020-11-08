@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Questions{% endblock %}
+
+{% block content %}
+<div class="row flex_display justify-content-center">
+    <span class="text-highlight" style="font-size:20px">Let's answer some questions</span>
+</div>
+
+<div class="app__content bg_white">
+
+    {% set forms = [submit_form.sat, submit_form.wlb, submit_form.opp, submit_form.ski, submit_form.fin, submit_form.imp] %}
+
+    <div class="row flex_display justify-content-center">
+        <div class="col-lg-5">
+            <div class="card">
+                <form method="POST" action="{{ url_for('frontend.questions_page', user_persona_id=user_persona_id) }}" enctype="multipart/form-data">
+                    {{ submit_form.csrf_token }}
+                    <div id="sat">
+                        {{ submit_form.sat.csrf_token }}
+                            <p>Sources of fulfillment are the most important to look for in a career.</p>
+                            <div>
+                                {{ submit_form.sat.answer(style="list-style:none") }}
+                            </div>
+                            <p>You enjoy reflecting on what you like and dislike when doing a piece of work.</p>
+                            {{ submit_form.sat.weight(style="list-style:none") }}
+                        <input type="button" class="btn-block btn-primary mt-3 mb-1" value="NEXT" onclick="show_next('sat','wlb');">
+                    </div>
+                    <div id="wlb">
+                        {{ submit_form.wlb.csrf_token }}
+                            <p>Flexible working conditions are very important and time is your most valuable asset.</p>
+                            <div>
+                                {{ submit_form.wlb.answer(style="list-style:none") }}
+                            </div>
+                            <p>You want to have enough time for friends, family and personal interests.</p>
+                            {{ submit_form.wlb.weight(style="list-style:none") }}
+                        <input type="button" class="btn-block btn-primary mt-3 mb-1" value="NEXT" onclick="show_next('wlb','opp');">
+                        <input type="button" class="btn-block btn-secondary mt-3 mb-1" value="PREVIOUS" onclick="show_prev('sat');">
+                    </div>
+                    <div id="opp">
+                        {{ submit_form.opp.csrf_token }}
+                            <p>A successful career must involve travelling, attending events, meeting new people and making an impact.</p>
+                            <div>
+                                {{ submit_form.opp.answer(style="list-style:none") }}
+                            </div>
+                            <p>You enjoy seeing what the future brings, not planning too much.</p>
+                            {{ submit_form.opp.weight(style="list-style:none") }}
+                        <input type="button" class="btn-block btn-primary mt-3 mb-1" value="NEXT" onclick="show_next('opp','ski');">
+                        <input type="button" class="btn-block btn-secondary mt-3 mb-1" value="PREVIOUS" onclick="show_prev('wlb');">
+                    </div>
+                    <div id="ski">
+                        {{ submit_form.ski.csrf_token }}
+                            <p>To be successful one needs to master all required skills for a job.</p>
+                            <div>
+                                {{ submit_form.ski.answer(style="list-style:none") }}
+                            </div>
+                            <p>You prefer to be prepared rather than learning as you go.</p>
+                            {{ submit_form.ski.weight(style="list-style:none") }}
+                        <input type="button" class="btn-block btn-primary mt-3 mb-1" value="NEXT" onclick="show_next('ski','fin');">
+                        <input type="button" class="btn-block btn-secondary mt-3 mb-1" value="PREVIOUS" onclick="show_prev('opp');">
+                    </div>
+                    <div id="fin">
+                        {{ submit_form.fin.csrf_token }}
+                            <p>Salary is the biggest indicator of a successful career.</p>
+                            <div>
+                                {{ submit_form.fin.answer(style="list-style:none") }}
+                            </div>
+                            <p>You prefer a high salary that allows outsourcing other parts of your life.</p>
+                            {{ submit_form.fin.weight(style="list-style:none") }}
+                        <input type="button" class="btn-block btn-primary mt-3 mb-1" value="NEXT" onclick="show_next('fin','imp');">
+                        <input type="button" class="btn-block btn-secondary mt-3 mb-1" value="PREVIOUS" onclick="show_prev('ski');">
+                    </div>
+                    <div id="imp">
+                        {{ submit_form.imp.csrf_token }}
+                            <p>Clear training courses, progression and feedback systems are crucial to a successful career.</p>
+                            <div>
+                                {{ submit_form.imp.answer(style="list-style:none") }}
+                            </div>
+                            <p>You enjoy making short and long term career plans.</p>
+                            {{ submit_form.imp.weight(style="list-style:none") }}
+
+                        {% if submit_form.errors %}
+                        {{ submit_form.errors }}
+                        {% endif %}
+
+                        {{ submit_form.submit(class="btn-block btn-primary mt-3 mb-1") }}
+                        <input type="button" class="btn-block btn-secondary mt-3 mb-1" value="PREVIOUS" onclick="show_prev('fin');">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
