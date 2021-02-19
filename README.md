@@ -1,10 +1,6 @@
 # CareerThink
 CareerThink is a Flask web application that enables reasoning and reflection upon one's career aspirations and values. 
 
-The source code can be found at: https://git-teaching.cs.bham.ac.uk/mod-ug-proj-2019/axi672/-/tree/master 
-
-To clone the master branch use `git clone -b master https://git-teaching.cs.bham.ac.uk/mod-ug-proj-2019/axi672.git`
-
 ### Requirements
 The application needs Python3, pip3 and virtualenv installed. When running the application, the virtual environment is created and activated and the rest of the libraries are installed using pip3.
 
